@@ -5,6 +5,8 @@ import socketio
 
 socketio = socketio.Client()
 
+running = False
+
 
 @socketio.event
 def connect():
@@ -12,15 +14,25 @@ def connect():
     socketio.emit("connected", data={"type": 1})
 
 
+@socketio.on("stop")
+def on_stop():
+    print("Stop arrived!")
+    global running
+    running = False
+
+
 @socketio.on("start")
-def on_message():
+def on_start():
     print("Arrived!")
     interval = 0.1
 
     sensor = RandomDataSensor()
     last_time = time.time()
 
-    while True:
+    global running
+    running = True
+
+    while running:
         current_time = time.time()
         if current_time - last_time > interval:
             data = sensor.get_data()
