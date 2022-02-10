@@ -29,6 +29,9 @@ def on_start():
     sensor = RandomDataSensor()
     last_time = time.time()
 
+    for i in range(len(sensor.channels)):
+        socketio.emit("axis", data={"index": i, "label": sensor.channel_names[i], "unit": sensor.channel_units[i]})
+
     global running
     running = True
 

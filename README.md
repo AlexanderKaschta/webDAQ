@@ -11,4 +11,4 @@ This is a little overview over status of the automatic tests
 
 ## License
 
-This demo is licensed under term of the [MIT License agreement](LICENSE).
+This demo is licensed under terms of the [MIT License agreement](LICENSE).
